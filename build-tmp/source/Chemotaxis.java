@@ -1,8 +1,24 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
+
 
  Bacteria colony[] = new Bacteria[50];
  boolean bias = false;
 
- void setup()   
+ public void setup()   
  {       
  	size(500, 500);
  	background(128, 64, 0);
@@ -13,7 +29,7 @@
 	}
  }   
 
- void draw()   
+ public void draw()   
  {    
  	//move and show the bacteria
  	fill(128, 64, 0, 56);
@@ -29,7 +45,7 @@
 	} 	
  }  
 
- void food()
+ public void food()
  {
  	//main slab of cheese
  	fill(255, 153, 0);
@@ -46,13 +62,13 @@
  }
 
 // food creation trigger
- void mouseClicked()
+ public void mouseClicked()
  {
  	bias = !bias;
  }
 
 // sweeping function
- void keyPressed()
+ public void keyPressed()
  {
  	// press space to knock away the bacteria
  	if (key == ' ' && bias)
@@ -79,14 +95,14 @@
  		r = (int)(Math.random()*11)+5;
  	}
 
- 	void show()
+ 	public void show()
  	{
  		stroke(0, green, 0);
  		fill(0, green, 0);
  		ellipse(x, y, r, r);
  	}
 
- 	void move()
+ 	public void move()
  	{
  		if (bias)
  		{
@@ -117,3 +133,12 @@
  		}
  	}
  }    
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
